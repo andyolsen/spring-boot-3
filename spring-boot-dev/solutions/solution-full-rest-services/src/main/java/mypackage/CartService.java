@@ -1,0 +1,14 @@
+package mypackage;
+
+import java.util.Map;
+
+public interface CartService {
+    void addItemToCart(int id, int quantity);
+    void removeItemFromCart(int id);
+    Map<Integer, Integer> getAllItemsInCart();
+    double calculateCartCost();
+    void displayRecentActivity();
+
+    double calculateSalesTax();
+    double calculateDeliveryCharge();
+}

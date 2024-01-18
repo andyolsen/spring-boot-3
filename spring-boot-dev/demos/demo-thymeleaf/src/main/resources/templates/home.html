@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Thymeleaf Example</title>
+	<link th:href="@{/styles.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+	<div class="panel">
+		<h2>Add a customer</h2>
+		<form action="#" th:action="@{/addCustomer}" th:object="${newCustomer}" method="post">
+			
+			<p>
+				<label>Name</label>
+				<input type="text" th:field="*{name}" />
+			</p>
+			
+			<p>
+				<label>Email</label>
+				<input type="email" th:field="*{emailAddress}" />
+			</p>
+			
+			<p>
+				<button type="submit">Add</button>
+			</p>
+			
+		</form>
+	</div>	
+	
+	<div class="panel">
+		<h2>Buy a product</h2>
+		<form action="#" th:action="@{/buyProduct}" method="post">
+		 	
+			<p>
+				<label>Customer</label>
+				<select name="customerID">
+					<option th:each="c : ${Customers}" 
+					        th:value="${c.customerID}" 
+					        th:text="${c.name}">Customer name [offline]</option>
+				</select> 
+			</p>
+			
+			<p>
+				<label>Product</label>
+				<select name="productID">
+					<option th:each="mypackage: ${Products}"
+					        th:value="${mypackage.productID}"
+					        th:text="${mypackage.description}">Product description [offline]</option>
+				</select> 
+			</p>
+						
+			<p>
+				<button type="submit">Buy</button>
+			</p>
+			
+		</form>
+	</div>
+
+	<div class="panel">
+		<h2>Purchases for each customer</h2>
+		<div th:each="customer: ${Customers}">
+			<div th:if="${!customer.products.isEmpty()}">
+				<h4 th:text="${customer} + ':' ">Customer details [offline]</h4>
+				<ul>
+					<li th:each="product : ${customer.products}" th:text="${product}">Product details[offline]</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<footer>
+		<p th:text="${@timestamp}">Timestamp</p>
+	</footer>
+
+</body>
+</html>

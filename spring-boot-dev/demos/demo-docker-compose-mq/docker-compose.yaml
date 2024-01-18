@@ -1,0 +1,32 @@
+version: '3.0'
+services:
+
+  activemq:
+    container_name: activemq
+    build:
+      context: .
+      dockerfile: Dockerfile-activemq
+    image: emps/activemq
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    volumes:
+      - aq-data:/data/activemq
+      - aq-log:/var/log/activemq
+    restart: always
+
+  appmq:
+    container_name: appmq
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    image: emps/appmq
+    depends_on:
+      - activemq
+    links:
+      - activemq:activemq
+
+volumes:
+  aq-data:
+  aq-log:
+  

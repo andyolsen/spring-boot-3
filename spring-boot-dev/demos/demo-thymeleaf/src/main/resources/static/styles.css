@@ -1,0 +1,29 @@
+body {
+	font-family: calibri;
+}
+
+.panel {
+	color: white;
+	background-color: #5191f7; 
+	padding-bottom: 2px;
+	padding-left: 2px;
+}
+
+label {
+    padding-right: 5px;
+    width: 100px;
+    float: left;
+}
+
+select, input {
+	width: 150px;
+}
+
+ul {
+	margin-top: -20px;
+}
+
+footer {
+	margin-top: 20px;
+	color: #3399FF;
+}

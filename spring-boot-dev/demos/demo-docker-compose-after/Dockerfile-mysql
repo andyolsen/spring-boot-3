@@ -1,0 +1,7 @@
+FROM mysql:8.0.28
+
+EXPOSE 3306
+
+ENV MYSQL_ROOT_PASSWORD=c0nygre
+
+COPY myschema.sql /docker-entrypoint-initdb.d
